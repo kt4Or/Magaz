@@ -15,5 +15,10 @@ class ProductController extends Controller
         return view('products.index');
             dd($slug);
             
-            }
+        }
+
+    public function show($slug){
+        $product = Product::query()->with(['category', 'status'])->where('slug', $slug)->firstOrFail();
+        return view('products.show', compact('product'));
+    }
 }
