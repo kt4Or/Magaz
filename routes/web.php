@@ -30,9 +30,11 @@ Route::get('/', [\App\Http\Controllers\ProductController::class, 'index'])->name
 Route::get('/product/{slug}', [ProductController::class, 'show'])->name('products.show'); 
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('categories.show');
 
+
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart/del-item{product_id}', [CartController::class, 'delItem'])->name('cart.del_item');
 Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 Route::get('/cart/show', [CartController::class, 'show'])->name('cart.show');
+Route::match(['get', 'post'], '/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 //Route::get('/', '\App\Http\Controllers\ProductController@index')->name('home');
 

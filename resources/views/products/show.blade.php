@@ -12,7 +12,7 @@
    <ul class="list-unstyled">
       <li>Категория: <a href="{{ route('categories.show', ['slug' => $product->category->slug]) }}"></a>
       {{ $product->category->title }}</li>
-      <li>Наличие: <i class="{{ $product->status->icon }}"></i>{{ $product->status->title }}</li>
+      <li>Наличие: <i class="{{ $product->status->icon }}"></i> {{ $product->status->title }} </li>
       <li>Цена: <span class="card-price text-center">
          @if($product->old_price)
             <del><small>@price_format($product->old_price) руб.</small></del>
