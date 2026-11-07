@@ -40,8 +40,38 @@ Route::get('/cart/show', [CartController::class, 'show'])->name('cart.show');
 Route::match(['get', 'post'], '/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 
 
-Route::get('/register', [UserController::class, 'create'])->name('register.create');
-Route::post('/register', [UserController::class, 'store'])->name('register.store');
+
+
+
+
+
+
+
+
+
+
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
+    Route::get('/', [ProductController::class, 'index'])->name('admin.index');
+    Route::resource('/categories', CategoryController::class);
+});
+
+// ==========================================
+
+Route::group(['middleware' => 'guest'], function () {
+    // Регистрация
+    Route::get('/register', [UserController::class, 'create'])->name('register.create');
+    Route::post('/register', [UserController::class, 'store'])->name('register.store');
+
+
+    Route::get('/login', [UserController::class, 'loginForm'])->name('login.create');
+    Route::post('/login', [UserController::class, 'login'])->name('login');
+});
+
+
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+
+
+
 
 //Route::get('/', '\App\Http\Controllers\ProductController@index')->name('home');
 
