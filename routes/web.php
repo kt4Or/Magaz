@@ -3,7 +3,9 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
-});*/
+})->name('home');
 
 /*Route::get('/', function () {
     return view('index');
@@ -36,5 +38,10 @@ Route::get('/cart/del-item{product_id}', [CartController::class, 'delItem'])->na
 Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 Route::get('/cart/show', [CartController::class, 'show'])->name('cart.show');
 Route::match(['get', 'post'], '/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+
+
+Route::get('/register', [UserController::class, 'create'])->name('register.create');
+Route::post('/register', [UserController::class, 'store'])->name('register.store');
+
 //Route::get('/', '\App\Http\Controllers\ProductController@index')->name('home');
 

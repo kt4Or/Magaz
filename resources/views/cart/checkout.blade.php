@@ -93,7 +93,7 @@
             <button type="submit" class="btn btn-primary mt-3">Submit</button>
          </form>
       @else
-         <h4>Корзина пуста</h4>
+         <h4>Спасибо за заказ</h4>
       @endif
    </div>
 @endsection
