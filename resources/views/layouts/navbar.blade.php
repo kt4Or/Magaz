@@ -12,6 +12,7 @@
             @foreach($categories as $category)
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('categories.show', ['slug' => $category->slug])}}">{{ $category->title }}</a>
+                {{-- {{ route('categories.show', ['category' => $category->slug]) }} --}}
 
             </li>
             @endforeach

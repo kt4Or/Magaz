@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('home');
 
 /*Route::get('/', function () {
     return view('index');
@@ -39,20 +39,9 @@ Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 Route::get('/cart/show', [CartController::class, 'show'])->name('cart.show');
 Route::match(['get', 'post'], '/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 
-
-
-
-
-
-
-
-
-
-
-
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', [ProductController::class, 'index'])->name('admin.index');
-    Route::resource('/categories', CategoryController::class);
+    // Route::resource('/categories', CategoryController::class);
 });
 
 // ==========================================

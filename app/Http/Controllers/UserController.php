@@ -39,25 +39,26 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+    
+    if (Auth::attempt([
+        'email' => $request->email,
+        'password' => $request->password,
+    ])){
+        session()->flash('success', 'Вы успешно вошли');
         
-        if (Auth::attempt([
-            'email' => $request->email,
-            'password' => $request->password,
-        ])){
-            session()->flash('success', 'Вы а логгед');
-            if (Auth::user()->is_admin) {
-                return redirect()->route('admin.index');
-            } else {
-                return redirect()->home();
-            }
-            return redirect()->back()->with('error', 'Неправильно либо логин либо логин либо логин или пароль');
+        if (Auth::user()->is_admin) {
+            return redirect()->route('admin.index');
         }
+        
+        return redirect()->route('home');
+    }
 
-
+    // Этот код сработает, ТОЛЬКО если Auth::attempt вернул false
+    return redirect()->back()->with('error', 'Неправильный логин или пароль');
     }
 
     public function logout()
