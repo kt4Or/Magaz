@@ -28,17 +28,17 @@
 <div class="form-row">
     <div class="col-md-4">
         <label for="price">Цена</label>
-        <input type="number" step="0.01" name="price" id="price" class="form-control"
-               value="{{ old('price', $product->price ?? 0) }}" required>
+        <input type="number" step="0.01" min="100" name="price" id="price" class="form-control"
+               value="{{ old('price', $product->price ?? 100) }}" required>
     </div>
     <div class="col-md-4">
-        <label for="old_price">Старая цена</label>
-        <input type="number" step="0.01" name="old_price" id="old_price" class="form-control"
-               value="{{ old('old_price', $product->old_price ?? 0) }}">
+    <label for="old_price">Старая цена</label>
+    <input type="number" step="0.01" min="100" name="old_price" id="old_price" class="form-control"
+           value="{{ old('old_price', $product->old_price ?? 100) }}">
     </div>
     <div class="col-md-4">
         <label for="qty">Количество</label>
-        <input type="number" name="qty" id="qty" class="form-control"
+        <input type="number" min="0" name="qty" id="qty" class="form-control"
                value="{{ old('qty', $product->qty ?? 0) }}">
     </div>
 </div>

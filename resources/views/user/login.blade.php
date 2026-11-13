@@ -1,4 +1,4 @@
-@extends('layouts.layout') {{-- Замените на точное имя вашего шаблона (например, layouts.app или layouts.main), если оно другое --}}
+@extends('layouts.layout') 
 
 @section('title', 'Вход в аккаунт')
 

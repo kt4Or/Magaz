@@ -1,4 +1,4 @@
-@extends('layouts.layout') {{-- Укажите точное имя вашего основного шаблона, если оно отличается --}}
+@extends('layouts.layout') 
 
 @section('title', 'Регистрация')
 
