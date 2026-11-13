@@ -60,12 +60,6 @@
             @endforelse
         </div>
     </div><!-- /product-cards -->
-
-    <div class="col-md-12">
-        <nav aria-label="Page navigation example">
-            {{ $products->links() }}
-        </nav>
-    </div>
     @if(count ($products))
     <div>
       <nav aria-label="Page navigation example">

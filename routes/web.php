@@ -39,10 +39,11 @@ Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 Route::get('/cart/show', [CartController::class, 'show'])->name('cart.show');
 Route::match(['get', 'post'], '/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 
-Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
-    Route::get('/', [ProductController::class, 'index'])->name('admin.index');
-    // Route::resource('/categories', CategoryController::class);
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function () {
+    Route::get('/', [\App\Http\Controllers\Admin\ProductController::class, 'index'])->name('index');
+    Route::resource('products', \App\Http\Controllers\Admin\ProductController::class)->except(['show']);
 });
+
 
 // ==========================================
 

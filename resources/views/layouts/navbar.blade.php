@@ -11,21 +11,54 @@
             </li>
             @foreach($categories as $category)
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('categories.show', ['slug' => $category->slug])}}">{{ $category->title }}</a>
-                {{-- {{ route('categories.show', ['category' => $category->slug]) }} --}}
-
+                <a class="nav-link" href="{{ route('categories.show', ['slug' => $category->slug]) }}">{{ $category->title }}</a>
             </li>
             @endforeach
             <li class="nav-item">
-                
                 <button onclick="getCart('{{ route('cart.show') }}')" type="button" class="btn btn-primary">
                     Корзина <span class="badge badge-light mini-cart-qty">{{ session('cart_qty') ?? 0 }}</span>
                 </button>
             </li>
         </ul>
-        <form class="form-inline">
+
+        <form class="form-inline my-2 my-lg-0 mr-3">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
         </form>
+
+        <ul class="navbar-nav align-items-center">
+            @guest
+                <li class="nav-item mr-2 my-1 my-lg-0">
+                    <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm">
+                        <i class="fas fa-sign-in-alt"></i> Вход
+                    </a>
+                </li>
+                <li class="nav-item my-1 my-lg-0">
+                    <a href="{{ route('register.create') }}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-user-plus"></i> Регистрация
+                    </a>
+                </li>
+            @endguest
+
+            @auth
+                @if(auth()->user()->is_admin)
+                    <li class="nav-item mr-2 my-1 my-lg-0">
+                        <a href="{{ route('admin.index') }}" class="btn btn-warning btn-sm">
+                            <i class="fas fa-cog"></i> Админка
+                        </a>
+                    </li>
+                @endif
+
+                <li class="nav-item mr-3 text-light my-1 my-lg-0">
+                    <i class="fas fa-user"></i> {{ auth()->user()->name }}
+                </li>
+
+                <li class="nav-item my-1 my-lg-0">
+                    <a href="{{ route('logout') }}" class="btn btn-outline-danger btn-sm">
+                        <i class="fas fa-sign-out-alt"></i> Выход
+                    </a>
+                </li>
+            @endauth
+        </ul>
     </div>
 </nav>
